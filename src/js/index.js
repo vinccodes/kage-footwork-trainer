@@ -69,18 +69,15 @@ function main(){
     // generate shots
     shotsToCall = generateShots(12);
     console.log(shotsToCall)
+    counter = 0;
     
-    
-    shotsToCall.forEach(corner=>{
-
+    const intervalID = setInterval(()=>{
         let sentence = new SpeechSynthesisUtterance();
-        sentence.text = corner;
-
+        sentence.text = shotsToCall[counter]
         speechSynth.speak(sentence);
-
-        // TODO: set a delay between each shot call
-
-    })
-       
-
+        counter++;
+        if (counter == shotsToCall.length){
+            clearInterval(intervalID);
+        }
+    }, 3000)
 }
