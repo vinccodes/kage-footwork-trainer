@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kami Footwork | Training in Progress</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="timer">
+            <p class="timer-minutes">00<span class="timer-colon"> :</span> <span class="timer-seconds">00</span></p>
+        </div>
+        <div class="settings">
+            <select class="voices">
+                <option name="voice" type="" value="">Choose your voice</option>
+            </select>
+
+            <label for="speed">Speed:</label>
+            <input name="speed" type="range" min="-1" max="2" step="0.25"></input>
+        </div>
+        <div class="flex">
+            <button id="btnStop">Stop</button>
+            <button id="btnStart">Start</button>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
