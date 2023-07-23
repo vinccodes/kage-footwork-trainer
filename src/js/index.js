@@ -9,7 +9,21 @@ const corners = {
     "5": "rear court forehand",
     "6": "rear court backhand"
 }
+
+const delayBetweenShots = {
+    "1": 7000,
+    "2": 6000,
+    "3": 5000,
+    "4": 4000,
+    "5": 3000,
+}
+
+const countDown = ["three", "two", "one", "go"]
+
+
 const voicesDropdown = document.querySelector('.voices');
+const speedValue = document.querySelector('.speedValue');
+const difficultyDescription = document.querySelector('.difficulty-description');
 const btnStop = document.getElementById('btnStop')
 const btnStart = document.getElementById('btnStart')
 
@@ -17,6 +31,9 @@ const btnStart = document.getElementById('btnStart')
 // Event handlers
 btnStop.addEventListener('click', main);
 btnStart.addEventListener('click', main);
+speedValue.addEventListener('input', (event)=>{
+    difficultyDescription.textContent = event.target.value; 
+})
 
 
 
@@ -61,6 +78,24 @@ function getVoicesFromDevice(){
 
 }
 
+function readyCountdown(){
+    let countdownCounter = 0;
+    let sentence = new SpeechSynthesisUtterance();
+    // begin count down
+    sentence.text = countDown[countdownCounter];
+    speechSynth.speak(sentence);
+    countdownCounter++;
+    const countDownId = setInterval(()=>{
+        sentence.text = countDown[countdownCounter];
+        speechSynth.speak(sentence);
+        console.log('playing countdown', countDown[countdownCounter])
+        countdownCounter++;
+        if (countdownCounter > countDown.length){
+            clearInterval(countDownId);
+        }
+    }, 1000)
+}
+
 
 
 
@@ -70,14 +105,21 @@ function main(){
     shotsToCall = generateShots(12);
     console.log(shotsToCall)
     counter = 0;
-    
-    const intervalID = setInterval(()=>{
-        let sentence = new SpeechSynthesisUtterance();
-        sentence.text = shotsToCall[counter]
-        speechSynth.speak(sentence);
-        counter++;
-        if (counter == shotsToCall.length){
-            clearInterval(intervalID);
-        }
-    }, 3000)
+    let sentence = new SpeechSynthesisUtterance();
+     // play the first shot without delay
+    sentence.text = shotsToCall[counter]
+    speechSynth.speak(sentence);
+    counter++;
+
+    if (counter > 0) {
+        const intervalID = setInterval(()=>{
+            // let sentence = new SpeechSynthesisUtterance();
+            sentence.text = shotsToCall[counter]
+            speechSynth.speak(sentence);
+            counter++;
+            if (counter == shotsToCall.length){
+                clearInterval(intervalID);
+            }
+        }, delayBetweenShots[speedValue.value])
+    }
 }
