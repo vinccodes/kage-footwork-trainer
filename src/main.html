@@ -7,26 +7,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kami Footwork | Training in Progress</title>
     <link rel="stylesheet" href="/css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lumanosimo&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
-    <div class="container">
-        <div class="timer">
+    <div class="main container bg-primary">
+        <!-- <div class="timer">
             <p class="timer-minutes">00<span class="timer-colon"> :</span> <span class="timer-seconds">00</span></p>
-        </div>
-        <div class="settings">
+        </div> -->
+        <h1 class="logo">Kami Footwork Trainer</h1>
+        <div class="settings flex-col">
             <select class="voices">
                 <option name="voice" type="" value="">Choose your voice</option>
             </select>
+            <div class="speed-group">
+                <label for="speed">Speed:</label>
+                <input class="speedValue" name="speed" type="range" min="1" max="5" step="1"></input>
+                <p class="difficulty-description"></p>
+            </div>
 
-            <label for="speed">Speed:</label>
-            <input class="speedValue" name="speed" type="range" min="1" max="5" step="1"></input>
-            <p class="difficulty-description"></p>
+            <div class="flex">
+                <button id="btnStop" class="btn btn-red">Stop</button>
+                <button id="btnStart" class="btn btn-blue">Start</button>
+            </div>
         </div>
-        <div class="flex">
-            <button id="btnStop">Stop</button>
-            <button id="btnStart">Start</button>
-        </div>
+
     </div>
     <script src="js/index.js"></script>
 </body>

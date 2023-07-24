@@ -35,6 +35,9 @@ speedValue.addEventListener('input', (event)=>{
     difficultyDescription.textContent = event.target.value; 
 })
 
+window.onload= ()=>{
+    difficultyDescription.textContent = speedValue.nodeValue;
+}
 
 
 console.log('hello world');
@@ -46,6 +49,8 @@ getVoicesFromDevice();
 if (speechSynth.onvoiceschanged !== undefined){
     speechSynth.onvoiceschanged = getVoicesFromDevice;
 }
+
+
 
 
 
